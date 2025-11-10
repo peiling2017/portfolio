@@ -3,444 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Senior Software Engineer</title>
+    <title>Your Name - Portfolio</title>
     <style>
-        :root {
-            --text-primary: #1a1a1a;
-            --text-secondary: #666;
-            --text-light: #999;
-            --border: #e5e5e5;
-            --background: #fafafa;
+        :root { 
+            --primary: #2563eb; 
+            --secondary: #7c3aed;
+            --dark: #1e293b; 
+            --light: #f8fafc;
+            --text: #334155;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: white;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 40px;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text);
+            background: var(--light);
         }
         
         /* 导航栏 */
-        nav {
-            padding: 3rem 0 2rem;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 3rem;
+        .navbar { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1); 
+            position: fixed; 
+            width: 100%; 
+            top: 0;
+            z-index: 1000;
         }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
         }
-        
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: var(--dark); 
+            text-decoration: none; 
         }
-        
-        .nav-links a:hover {
-            color: var(--text-primary);
+        .nav-links { 
+            display: flex; 
+            gap: 2rem; 
+            list-style: none; 
         }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 500; 
+            transition: color 0.3s; 
+        }
+        .nav-links a:hover { color: var(--primary); }
         
         /* 主页横幅 */
-        .hero {
-            padding: 2rem 0 4rem;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 4rem;
+        .hero { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 140px 2rem 80px; 
+            text-align: center; 
+            margin-top: 60px; 
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; opacity: 0.9; }
+        
+        /* 按钮 */
+        .btn { 
+            display: inline-block; 
+            padding: 12px 30px; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            transition: all 0.3s; 
+            font-weight: 500;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
         }
         
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
+        /* 通用样式 */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark); margin-bottom: 1rem; }
+        .section-title p { color: #64748b; font-size: 1.1rem; }
         
-        .hero .title {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
+        /* 项目网格 */
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 2rem; 
         }
-        
-        /* 两栏布局 */
-        .section-container {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-            align-items: start;
+        .project-card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
         }
-        
-        .section-title {
-            position: sticky;
-            top: 2rem;
+        .project-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
-        
-        .section-title h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .content {
-            padding-left: 1rem;
-        }
-        
-        /* 内容样式 */
-        h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        h4 {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+        .project-card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem; }
+        .project-card p { color: #64748b; margin-bottom: 1.5rem; line-height: 1.7; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tech-tag { 
+            background: #e0f2fe; 
+            color: #0369a1; 
+            padding: 0.4rem 0.8rem; 
+            border-radius: 20px; 
+            font-size: 0.875rem; 
             font-weight: 500;
         }
         
-        p {
+        /* 时间线样式 - 用于Education和Work Experience */
+        .timeline { max-width: 800px; margin: 0 auto; }
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary);
         }
-        
-        /* 技能标签 */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .skill-category h4 {
+        .timeline-item h3 { color: var(--dark); margin-bottom: 0.5rem; }
+        .timeline-date { 
+            color: var(--primary); 
+            font-weight: 600; 
             margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .skill-tag {
-            background: var(--background);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        /* 项目和工作经历 */
-        .item {
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .meta {
-            color: var(--text-light);
             font-size: 0.9rem;
-            margin-bottom: 1rem;
         }
+        .timeline-company { color: #64748b; font-weight: 500; margin-bottom: 1rem; }
+        .timeline-description { color: #64748b; line-height: 1.7; }
         
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+        /* Gap Year特殊样式 */
+        .gap-year {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--secondary);
         }
-        
-        .tech-tag {
-            background: var(--background);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        ul {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-        
-        li {
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
+        .gap-year h3 { color: var(--secondary); }
+        .gap-year .timeline-date { color: var(--secondary); }
         
         /* 页脚 */
-        footer {
-            padding: 3rem 0;
-            border-top: 1px solid var(--border);
-            margin-top: 3rem;
-            text-align: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
+        footer { 
+            background: var(--dark); 
+            color: white; 
+            text-align: center; 
+            padding: 3rem 2rem; 
+            margin-top: 2rem; 
         }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
-            body {
-                padding: 0 20px;
-            }
-            
-            .section-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .section-title {
-                position: static;
-            }
-            
-            .content {
-                padding-left: 0;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                gap: 1.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
+            .nav-links { gap: 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 120px 1rem 60px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 1rem; }
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#journey">My Journey</a></li>
-            <li><a href="#education">Education</a></li>
-        </ul>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Your Name</a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#gap-year">My Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- 主页横幅 -->
     <section class="hero">
-        <h1>Hello!</h1>
-        <h1>I'm Your Name</h1>
-        <div class="title">Senior Software Engineer</div>
+        <div class="container">
+            <h1>Hi, I'm Your Name</h1>
+            <p>Developer & Data Analyst passionate about creating meaningful digital experiences</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
     </section>
 
-    <!-- About 部分 -->
-    <div class="section-container" id="about">
-        <div class="section-title">
-            <h2>About Me</h2>
-        </div>
-        <div class="content">
-            <p>I'm a senior software engineer with expertise in full-stack development, data analysis, and cloud technologies. I specialize in building scalable, efficient solutions that solve complex business problems.</p>
-            
-            <p>With experience spanning multiple industries and technology stacks, I bring a comprehensive approach to software development that balances technical excellence with practical business needs.</p>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>Frontend</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">TypeScript</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4>Backend</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4>Cloud & DevOps</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">CI/CD</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4>Data & AI</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">NLP</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- 项目展示 -->
-    <div class="section-container" id="projects">
-        <div class="section-title">
-            <h2>Projects</h2>
-        </div>
-        <div class="content">
-            <div class="item">
-                <h3>01</h3>
-                <h4>Social Media Sentiment Analysis Platform</h4>
-                <p>Advanced NLP system that analyzes social media data to provide real-time sentiment insights and brand perception metrics using machine learning and natural language processing.</p>
-                <div class="tech-tags">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">NLP</span>
-                    <span class="tech-tag">Machine Learning</span>
-                    <span class="tech-tag">BERT</span>
-                    <span class="tech-tag">Data Visualization</span>
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+                <p>Some of my recent work and personal projects</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Social Media Sentiment Analysis</h3>
+                    <p>Developed a comprehensive sentiment analysis system to quantify public perception of brands through social media data using advanced NLP and machine learning techniques.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">BERT</span>
+                        <span class="tech-tag">Data Analysis</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Portfolio Website</h3>
+                    <p>Designed and developed a fully responsive portfolio website using modern web technologies to showcase projects and professional experience.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
                 </div>
             </div>
-            
-            <div class="item">
-                <h3>02</h3>
-                <h4>Enterprise Analytics Dashboard</h4>
-                <p>Full-stack business intelligence platform providing comprehensive data visualization and real-time analytics for enterprise clients across multiple industries.</p>
-                <div class="tech-tags">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">SQL</span>
-                    <span class="tech-tag">AWS</span>
-                    <span class="tech-tag">Docker</span>
-                </div>
-            </div>
         </div>
-    </div>
+    </section>
 
     <!-- 工作经历 -->
-    <div class="section-container" id="experience">
-        <div class="section-title">
-            <h2>Experience</h2>
-        </div>
-        <div class="content">
-            <div class="item">
-                <h3>Senior Software Engineer</h3>
-                <div class="meta">Tech Company · Jan 2022 - Present</div>
-                <ul>
-                    <li>Led development of microservices architecture serving 1M+ users</li>
-                    <li>Reduced API response times by 40% through optimization</li>
-                    <li>Mentored team of 5 junior developers</li>
-                </ul>
-                <div class="tech-tags">
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">AWS</span>
-                </div>
+    <section id="experience" class="section" style="background: #f8fafc;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+                <p>My professional journey and career path</p>
             </div>
-            
-            <div class="item">
-                <h3>Full Stack Developer</h3>
-                <div class="meta">Startup Inc · Jun 2020 - Dec 2021</div>
-                <ul>
-                    <li>Built and launched MVP product from scratch using React and Node.js</li>
-                    <li>Implemented CI/CD pipeline reducing deployment time by 60%</li>
-                    <li>Collaborated with product team to define technical requirements</li>
-                </ul>
-                <div class="tech-tags">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">MongoDB</span>
-                    <span class="tech-tag">Docker</span>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 - Present</div>
+                    <h3>Data Analyst</h3>
+                    <div class="timeline-company">Tech Company Inc.</div>
+                    <p class="timeline-description">Analyzed large datasets to provide business insights, created interactive dashboards, and implemented data-driven decision making processes across departments.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 - 2022</div>
+                    <h3>Junior Developer</h3>
+                    <div class="timeline-company">Startup Solutions</div>
+                    <p class="timeline-description">Developed and maintained web applications, collaborated with cross-functional teams, and contributed to product development lifecycle.</p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- My Journey -->
-    <div class="section-container" id="journey">
-        <div class="section-title">
-            <h2>My Journey</h2>
-        </div>
-        <div class="content">
-            <div class="item">
-                <h3>Strategic Career Development Phase</h3>
-                <div class="meta">2023 - 2024 · Professional Growth Period</div>
-                <p>This period was dedicated to strategic skill development and career advancement, focusing on:</p>
-                <ul>
-                    <li>Advanced training in cloud technologies and distributed systems architecture</li>
-                    <li>Comprehensive study of European business practices and professional standards</li>
-                    <li>Development of specialized expertise in data engineering and analytics</li>
-                    <li>Language proficiency advancement for international professional communication</li>
-                    <li>Strategic career planning aligned with global market opportunities</li>
-                </ul>
-                <p>This focused investment in professional growth has equipped me with enhanced technical capabilities and a clear strategic direction for career progression in international markets.</p>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- 教育背景 -->
-    <div class="section-container" id="education">
-        <div class="section-title">
-            <h2>Education</h2>
-        </div>
-        <div class="content">
-            <div class="item">
-                <h3>Bachelor of Science in Computer Science</h3>
-                <div class="meta">University Name · 2018 - 2022</div>
-                <ul>
-                    <li>Graduated with honors in Computer Science</li>
-                    <li>Focus on software engineering and data structures</li>
-                    <li>Completed research projects in natural language processing</li>
-                </ul>
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+                <p>My academic background and qualifications</p>
             </div>
-            
-            <div class="item">
-                <h3>Data Science Certification</h3>
-                <div class="meta">Online Platform · 2022</div>
-                <ul>
-                    <li>Advanced certification in data analysis and machine learning</li>
-                    <li>Completed 500+ hours of coursework and practical projects</li>
-                    <li>Specialized in statistical analysis and data visualization</li>
-                </ul>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2018 - 2022</div>
+                    <h3>Bachelor of Science in Computer Science</h3>
+                    <div class="timeline-company">University of Technology</div>
+                    <p class="timeline-description">Graduated with honors. Focused on software engineering, data structures, and machine learning. Completed thesis on natural language processing applications.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 - 2018</div>
+                    <h3>Data Science Certification</h3>
+                    <div class="timeline-company">Online Specialization</div>
+                    <p class="timeline-description">Completed comprehensive data science program covering statistics, machine learning, data visualization, and big data technologies.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Gap Year -->
+    <section id="gap-year" class="section" style="background: #f0f9ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Journey</h2>
+                <p>A period of growth, learning, and self-discovery</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item gap-year">
+                    <div class="timeline-date">2023 - 2024</div>
+                    <h3>Personal Development & Skill Enhancement</h3>
+                    <div class="timeline-company">Self-Directed Learning</div>
+                    <p class="timeline-description">
+                        This period was dedicated to personal growth and professional development. I focused on:<br><br>
+                        • Mastering advanced Python programming and machine learning concepts<br>
+                        • Building full-stack web development skills through personal projects<br>
+                        • Learning about European tech industry trends and job markets<br>
+                        • Developing language skills and cultural understanding<br>
+                        • Creating a structured learning path for continuous improvement<br><br>
+                        This intentional break allowed me to gain clarity on my career direction and build a solid foundation for my next professional chapter.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系 -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just a friendly hello</p>
+            </div>
+            <div style="text-align: center;">
+                <a href="mailto:your.email@example.com" class="btn">Contact Me</a>
+                <a href="path-to-your-resume.pdf" class="btn btn-outline" style="margin-left: 1rem;">Download Resume</a>
+            </div>
+        </div>
+    </section>
 
     <!-- 页脚 -->
     <footer>
-        <div class="footer-nav">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#journey">My Journey</a>
-            <a href="#education">Education</a>
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
         </div>
-        <div>Your Name · Senior Software Engineer</div>
-        <div>© 2024 Your Name. All rights reserved.</div>
     </footer>
+
+    <!-- 平滑滚动JS -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
