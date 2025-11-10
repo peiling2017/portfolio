@@ -24,9 +24,9 @@
             line-height: 1.6;
             color: var(--text-primary);
             background: white;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
         
         /* 导航栏 */
@@ -56,7 +56,7 @@
         .hero {
             padding: 2rem 0 4rem;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         
         .hero h1 {
@@ -68,20 +68,33 @@
         .hero .title {
             color: var(--text-secondary);
             font-size: 1.2rem;
-            margin-bottom: 2rem;
         }
         
-        /* 内容区块 */
-        section {
+        /* 两栏布局 */
+        .section-container {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
             margin-bottom: 4rem;
+            align-items: start;
         }
         
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+        .section-title {
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .section-title h2 {
+            font-size: 1.1rem;
             font-weight: 600;
+            color: var(--text-primary);
         }
         
+        .content {
+            padding-left: 1rem;
+        }
+        
+        /* 内容样式 */
         h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
@@ -89,7 +102,7 @@
         }
         
         h4 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             margin-bottom: 1rem;
             font-weight: 500;
@@ -101,36 +114,52 @@
         }
         
         /* 技能标签 */
-        .skills {
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .skill-category h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
-            margin: 2rem 0;
+            gap: 0.5rem;
         }
         
         .skill-tag {
             background: var(--background);
-            padding: 0.4rem 1rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            border: 1px solid var(--border);
         }
         
         /* 项目和工作经历 */
-        .project, .experience, .education-item, .journey-item {
+        .item {
             margin-bottom: 3rem;
             padding-bottom: 3rem;
             border-bottom: 1px solid var(--border);
         }
         
-        .project:last-child, .experience:last-child, .education-item:last-child, .journey-item:last-child {
+        .item:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
         
-        .project-tech, .experience-tech {
+        .meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -143,13 +172,6 @@
             border-radius: 4px;
             font-size: 0.85rem;
             color: var(--text-secondary);
-        }
-        
-        /* 经历时间线 */
-        .experience-meta, .education-meta, .journey-meta {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
         }
         
         ul {
@@ -188,7 +210,24 @@
         /* 响应式设计 */
         @media (max-width: 768px) {
             body {
-                padding: 0 15px;
+                padding: 0 20px;
+            }
+            
+            .section-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .section-title {
+                position: static;
+            }
+            
+            .content {
+                padding-left: 0;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
             
             .nav-links {
@@ -197,10 +236,6 @@
             
             .hero h1 {
                 font-size: 2rem;
-            }
-            
-            .skills {
-                gap: 0.5rem;
             }
         }
     </style>
@@ -225,135 +260,175 @@
     </section>
 
     <!-- About 部分 -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I'm a senior software engineer with expertise in full-stack development, data analysis, and cloud technologies. I specialize in building scalable, efficient solutions that solve complex business problems.</p>
-        
-        <p>With experience spanning multiple industries and technology stacks, I bring a comprehensive approach to software development that balances technical excellence with practical business needs.</p>
-        
-        <div class="skills">
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Machine Learning</span>
-            <span class="skill-tag">Data Analysis</span>
+    <div class="section-container" id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
         </div>
-    </section>
+        <div class="content">
+            <p>I'm a senior software engineer with expertise in full-stack development, data analysis, and cloud technologies. I specialize in building scalable, efficient solutions that solve complex business problems.</p>
+            
+            <p>With experience spanning multiple industries and technology stacks, I bring a comprehensive approach to software development that balances technical excellence with practical business needs.</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Backend</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Cloud & DevOps</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Data & AI</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- 项目展示 -->
-    <section id="projects">
-        <h2>Projects</h2>
-        
-        <div class="project">
-            <h3>01</h3>
-            <h4>Social Media Sentiment Analysis Platform</h4>
-            <p>Advanced NLP system that analyzes social media data to provide real-time sentiment insights and brand perception metrics using machine learning and natural language processing.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">NLP</span>
-                <span class="tech-tag">Machine Learning</span>
-                <span class="tech-tag">BERT</span>
-                <span class="tech-tag">Data Visualization</span>
+    <div class="section-container" id="projects">
+        <div class="section-title">
+            <h2>Projects</h2>
+        </div>
+        <div class="content">
+            <div class="item">
+                <h3>01</h3>
+                <h4>Social Media Sentiment Analysis Platform</h4>
+                <p>Advanced NLP system that analyzes social media data to provide real-time sentiment insights and brand perception metrics using machine learning and natural language processing.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">BERT</span>
+                    <span class="tech-tag">Data Visualization</span>
+                </div>
+            </div>
+            
+            <div class="item">
+                <h3>02</h3>
+                <h4>Enterprise Analytics Dashboard</h4>
+                <p>Full-stack business intelligence platform providing comprehensive data visualization and real-time analytics for enterprise clients across multiple industries.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
             </div>
         </div>
-        
-        <div class="project">
-            <h3>02</h3>
-            <h4>Enterprise Analytics Dashboard</h4>
-            <p>Full-stack business intelligence platform providing comprehensive data visualization and real-time analytics for enterprise clients across multiple industries.</p>
-            <div class="project-tech">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">SQL</span>
-                <span class="tech-tag">AWS</span>
-                <span class="tech-tag">Docker</span>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- 工作经历 -->
-    <section id="experience">
-        <h2>Experience</h2>
-        
-        <div class="experience">
-            <h3>Senior Software Engineer</h3>
-            <div class="experience-meta">Tech Company · Jan 2022 - Present</div>
-            <ul>
-                <li>Led development of microservices architecture serving 1M+ users</li>
-                <li>Reduced API response times by 40% through optimization</li>
-                <li>Mentored team of 5 junior developers</li>
-            </ul>
-            <div class="experience-tech">
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">AWS</span>
+    <div class="section-container" id="experience">
+        <div class="section-title">
+            <h2>Experience</h2>
+        </div>
+        <div class="content">
+            <div class="item">
+                <h3>Senior Software Engineer</h3>
+                <div class="meta">Tech Company · Jan 2022 - Present</div>
+                <ul>
+                    <li>Led development of microservices architecture serving 1M+ users</li>
+                    <li>Reduced API response times by 40% through optimization</li>
+                    <li>Mentored team of 5 junior developers</li>
+                </ul>
+                <div class="tech-tags">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+            </div>
+            
+            <div class="item">
+                <h3>Full Stack Developer</h3>
+                <div class="meta">Startup Inc · Jun 2020 - Dec 2021</div>
+                <ul>
+                    <li>Built and launched MVP product from scratch using React and Node.js</li>
+                    <li>Implemented CI/CD pipeline reducing deployment time by 60%</li>
+                    <li>Collaborated with product team to define technical requirements</li>
+                </ul>
+                <div class="tech-tags">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
             </div>
         </div>
-        
-        <div class="experience">
-            <h3>Full Stack Developer</h3>
-            <div class="experience-meta">Startup Inc · Jun 2020 - Dec 2021</div>
-            <ul>
-                <li>Built and launched MVP product from scratch using React and Node.js</li>
-                <li>Implemented CI/CD pipeline reducing deployment time by 60%</li>
-                <li>Collaborated with product team to define technical requirements</li>
-            </ul>
-            <div class="experience-tech">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">MongoDB</span>
-                <span class="tech-tag">Docker</span>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- My Journey -->
-    <section id="journey">
-        <h2>My Journey</h2>
-        
-        <div class="journey-item">
-            <h3>Strategic Career Development Phase</h3>
-            <div class="journey-meta">2023 - 2024 · Professional Growth Period</div>
-            <p>This period was dedicated to strategic skill development and career advancement, focusing on:</p>
-            <ul>
-                <li>Advanced training in cloud technologies and distributed systems architecture</li>
-                <li>Comprehensive study of European business practices and professional standards</li>
-                <li>Development of specialized expertise in data engineering and analytics</li>
-                <li>Language proficiency advancement for international professional communication</li>
-                <li>Strategic career planning aligned with global market opportunities</li>
-            </ul>
-            <p>This focused investment in professional growth has equipped me with enhanced technical capabilities and a clear strategic direction for career progression in international markets.</p>
+    <div class="section-container" id="journey">
+        <div class="section-title">
+            <h2>My Journey</h2>
         </div>
-    </section>
+        <div class="content">
+            <div class="item">
+                <h3>Strategic Career Development Phase</h3>
+                <div class="meta">2023 - 2024 · Professional Growth Period</div>
+                <p>This period was dedicated to strategic skill development and career advancement, focusing on:</p>
+                <ul>
+                    <li>Advanced training in cloud technologies and distributed systems architecture</li>
+                    <li>Comprehensive study of European business practices and professional standards</li>
+                    <li>Development of specialized expertise in data engineering and analytics</li>
+                    <li>Language proficiency advancement for international professional communication</li>
+                    <li>Strategic career planning aligned with global market opportunities</li>
+                </ul>
+                <p>This focused investment in professional growth has equipped me with enhanced technical capabilities and a clear strategic direction for career progression in international markets.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- 教育背景 -->
-    <section id="education">
-        <h2>Education</h2>
-        
-        <div class="education-item">
-            <h3>Bachelor of Science in Computer Science</h3>
-            <div class="education-meta">University Name · 2018 - 2022</div>
-            <ul>
-                <li>Graduated with honors in Computer Science</li>
-                <li>Focus on software engineering and data structures</li>
-                <li>Completed research projects in natural language processing</li>
-            </ul>
+    <div class="section-container" id="education">
+        <div class="section-title">
+            <h2>Education</h2>
         </div>
-        
-        <div class="education-item">
-            <h3>Data Science Certification</h3>
-            <div class="education-meta">Online Platform · 2022</div>
-            <ul>
-                <li>Advanced certification in data analysis and machine learning</li>
-                <li>Completed 500+ hours of coursework and practical projects</li>
-                <li>Specialized in statistical analysis and data visualization</li>
-            </ul>
+        <div class="content">
+            <div class="item">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <div class="meta">University Name · 2018 - 2022</div>
+                <ul>
+                    <li>Graduated with honors in Computer Science</li>
+                    <li>Focus on software engineering and data structures</li>
+                    <li>Completed research projects in natural language processing</li>
+                </ul>
+            </div>
+            
+            <div class="item">
+                <h3>Data Science Certification</h3>
+                <div class="meta">Online Platform · 2022</div>
+                <ul>
+                    <li>Advanced certification in data analysis and machine learning</li>
+                    <li>Completed 500+ hours of coursework and practical projects</li>
+                    <li>Specialized in statistical analysis and data visualization</li>
+                </ul>
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- 页脚 -->
     <footer>
